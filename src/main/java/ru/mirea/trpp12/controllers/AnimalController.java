@@ -1,9 +1,11 @@
-package ru.mirea.trpp_second_12.controllers;
+package ru.mirea.trpp12.controllers;
 
 import com.opencsv.bean.CsvToBeanBuilder;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+
+import ru.mirea.trpp12.entity.Animal;
 
 import java.io.InputStreamReader;
 import java.util.List;
@@ -18,7 +20,12 @@ public class AnimalController {
 
     /** Конструктор. */
     public AnimalController() {
-        animalList = new CsvToBeanBuilder<Animal>(new InputStreamReader(this.getClass().getResourceAsStream("/MOCK_DATA.csv"))).withType(Animal.class).build().parse();
+        animalList = new CsvToBeanBuilder<Animal>(
+                        new InputStreamReader(
+                            this.getClass()
+                            .getResourceAsStream("/MOCK_DATA.csv")))
+                            .withType(Animal.class)
+                            .build().parse();
     }
 
     /**
